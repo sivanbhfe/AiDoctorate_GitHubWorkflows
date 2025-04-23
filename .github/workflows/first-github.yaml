@@ -1,0 +1,22 @@
+name: GitHub Actions from scratch
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_NAME: githubactions-demo
+  COURSE: Somecoursename
+
+run-name: ${{github.actor}} is testing Github actions
+jobs:
+  myexampljob:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Triggered by ${{github.event_name}}"
+      - run: echo "Running in on os ${{github.os}}"
+      - run: echo "Running on Repo ${{github.repository}} from branch ${{github.ref}}"
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+      - run: printenv
+      - run: echo "🖥️ This is the env ${{env.PROJECT_NAME}} and ${{env.COURSE}}
